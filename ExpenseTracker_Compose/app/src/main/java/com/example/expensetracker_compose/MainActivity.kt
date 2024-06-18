@@ -71,7 +71,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .background(MyDarkPurple),
-                        //.padding(vertical = 5.dp),
                     color = MyDarkPurple,
                 ) {
                     val state by viewModel.state.collectAsState()
@@ -172,13 +171,5 @@ fun BottomBar(navController: NavController){
                 }
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ExpenseTracker_ComposeTheme {
-
     }
 }

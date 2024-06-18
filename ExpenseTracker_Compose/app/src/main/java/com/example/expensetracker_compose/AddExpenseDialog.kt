@@ -74,8 +74,8 @@ fun AddExpenseDialog(
                            onEvent(ExpenseEvent.SetAmount(it.toDouble()))
                        },
                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                       placeholder = {
-                           Text(text = "Amount")
+                       label = {
+                           Text("Amount")
                        }
                    )
                    TextField(
@@ -83,8 +83,8 @@ fun AddExpenseDialog(
                        onValueChange = {
                            onEvent(ExpenseEvent.SetTitle(it))
                        },
-                       placeholder = {
-                           Text(text = "Title")
+                       label = {
+                           Text("Title")
                        }
                    )
 
@@ -95,13 +95,13 @@ fun AddExpenseDialog(
                        TextField(
                            value = selectedType,
                            onValueChange = {
-    //                           onEvent(ExpenseEvent.SetType(it))
+                               onEvent(ExpenseEvent.SetType(it))
                            },
                            readOnly = true,
                            trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)},
                            modifier = Modifier.menuAnchor(),
-                           placeholder = {
-                               Text(text = "Expense type")
+                           label = {
+                               Text("Type")
                            }
                        )
                        ExposedDropdownMenu(
@@ -121,22 +121,13 @@ fun AddExpenseDialog(
                        }
                    }
 
-//                   TextField(
-//                       value = state.type,
-//                       onValueChange = {
-//                           onEvent(ExpenseEvent.SetType(it))
-//                       },
-//                       placeholder = {
-//                           Text(text = "Expense type")
-//                       }
-//                   )
                    TextField(
                        value = state.description,
                        onValueChange = {
                            onEvent(ExpenseEvent.SetDescription(it))
                        },
-                       placeholder = {
-                           Text(text = "Expense description")
+                       label = {
+                           Text("Description")
                        }
                    )
                    Row (

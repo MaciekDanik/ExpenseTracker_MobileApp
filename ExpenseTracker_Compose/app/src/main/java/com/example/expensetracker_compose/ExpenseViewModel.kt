@@ -24,7 +24,6 @@ class ExpenseViewModel(
                 SortType.TITLE -> dao.getExpensesOrderedByTitle()
                 SortType.TYPE -> dao.getExpensesOrderedByType()
                 SortType.DATE -> dao.getExpensesOrderedByDate()
-                //SortType.SPECIFIC -> dao.filterExpensesByType()
             }
         }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())

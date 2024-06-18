@@ -57,9 +57,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.expensetracker_compose.ui.theme.MyDarkPurple
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.time.LocalDate
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen2(
     state: ExpenseState,
@@ -119,7 +120,6 @@ fun HomeScreen2(
                         fontSize = 28.sp,
                         fontStyle = FontStyle(3),
                         fontWeight = FontWeight.Bold,
-//                        modifier = Modifier.padding(padding),
                         textAlign = TextAlign.Center
 
                     )
@@ -135,7 +135,7 @@ fun HomeScreen2(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "${expense.amount.toString()} - ${expense.title}",
+                            text = "${expense.amount} - ${expense.title}",
                             fontSize = 20.sp
                         )
                         Text(
@@ -238,7 +238,7 @@ fun HistoryScreen(
                         modifier = Modifier.weight(1f)
                     ){
                         Text(
-                            text = "${expense.amount.toString()} - ${expense.title} - ${expense.date}",
+                            text = "${expense.amount} - ${expense.title} - ${expense.date}",
                             fontSize = 20.sp
                         )
                         Text(
@@ -284,7 +284,7 @@ fun StateScreen(
         array.fill(0.0)
         state.expenses.forEach{expense ->
             if(expense.date.month == date.month) {
-                kwota += state.amount
+                kwota += expense.amount
                 hashMapOfTypes.forEach{
                     if (it.key == expense.type)
                     {
@@ -319,9 +319,9 @@ fun StateScreen(
             }
             else{
                 var zmienna: Double = array[it.value] / kwota * 100.0
+                var decimal = BigDecimal(zmienna).setScale(2, RoundingMode.HALF_UP)
                 Text(
-//                    text = "You've spent ${array[it.value] / kwota * 100}% on ${it.key}",
-                    text = "You've spent ${zmienna}% on ${it.key}",
+                    text = "You've spent ${decimal}% on ${it.key}",
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
                     fontSize = 21.sp
